@@ -4,6 +4,7 @@ from tkinter import messagebox
 from PIL import Image, ImageTk
 
 
+
 root = Tk()
 root.geometry("600x600")
 root.title("Register")
@@ -39,26 +40,8 @@ class Register():
         self.cell_no_entry = Entry()
         self.cell_no_entry.place(x=150, y=180)
 
-        self.kin_details_label = Label(text="Next of Kin Details")
-        self.kin_details_label.place(x=10, y=220)
 
-        self.kin_name_label = Label(text="Name")
-        self.kin_name_label.place(x=10, y=250)
-        self.kin_name_entry = Entry()
-        self.kin_name_entry.place(x=150, y=250)
-
-        self.kin_name_label = Label(text="ID")
-        self.kin_name_label.place(x=10, y=280)
-        self.kin_name_entry = Entry()
-        self.kin_name_entry.place(x=150, y=280)
-
-
-        self.kin_no_entry = Label(text="Contact no")
-        self.kin_no_entry.place(x=10, y=310)
-        self.kin_no_entry = Entry()
-        self.kin_no_entry.place(x=150, y=310)
-
-        self.register_button = Button(text="complete")
+        self.register_button = Button(text="complete", command=self.Reg)
         self.register_button.place(x=150, y=350)
 
     def Reg(self):
@@ -66,11 +49,13 @@ class Register():
                                    database='sql4423136',
                                    auth_plugin='mysql_native_password')
             mycursor = mydb.cursor()
-            sql = "INSERT INTO login (user, password) Value(%s, %s)"
-            val = (self.id_no_entry.get(), self.password_entry.get())
+            sql = "INSERT INTO Register (name,Surname,Identity, password) Value(%s, %s, %s,%s)"
+            val = (self.name_entry.get(), self.surname_entry.get(), self.id_no_entry.get(), self.password_entry.get())
             mycursor.execute(sql, val)
             messagebox.showinfo("Output", "Registration Done.You can login.")
             mydb.commit()
+
+
 
 
 
