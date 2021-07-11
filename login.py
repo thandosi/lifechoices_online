@@ -32,7 +32,7 @@ def login():
     xy = mycursor.execute('Select * from register')
     for i in mycursor:
         print(i)
-        if i[5] == password_entry.get() or i[0] == user_id_entry.get():
+        if i[5] == password_entry.get() and i[0] == user_id_entry.get():
             messagebox.showinfo("Output", "Login")
 
             mydb = mysql.connector.connect(host="sql4.freesqldatabase.com", user="sql4424049", password="szuTDDBDLa", database="sql4424049", auth_plugin = 'mysql_native_password')

@@ -1,10 +1,15 @@
 from tkinter import *
 import mysql.connector
 from tkinter import messagebox
+from PIL import Image, ImageTk
 
 root = Tk()
-root.geometry("600x400")
+root.geometry("500x330")
 root.title("Admin")
+load = Image.open("rec.jpeg")
+loader = ImageTk.PhotoImage(load)
+img = Label(root, image=loader)
+img.place(x=0, y=0)
 
 user_id = Label(text="Username")
 user_id.place(x=10, y=80)
@@ -27,7 +32,7 @@ def login():
         if i[1] == user_password_entry.get() or i[0] == user_id_entry.get():
             messagebox.showinfo("Output", "Login")
             root.destroy()
-            import adm
+            import admin_view
     if i[1] != user_password_entry.get() or i[0] != user_id_entry.get():
             messagebox.showinfo("Output", "Enter correct information")
 

@@ -31,14 +31,12 @@ kin_no_entry.place(x=150, y=200)
 def finish():
     if kin_name_entry.get() == "" or kin_id_entry.get() == "" or kin_no_entry.get() == "":
         messagebox.showwarning(title='Invalid', message='Please enter valid details.')
-    elif kin_name_entry.get() == " " or kin_id_entry.get() == " " or kin_no_entry == " ":
-        messagebox.showwarning(title="Space", message="Please enter valid details.")
 
     else:
         mydb = mysql.connector.connect(host="sql4.freesqldatabase.com",
                                        user="sql4424049", password="szuTDDBDLa",
                                        database="sql4424049",
-                                       auth_plugin = 'mysql_native_password')
+                                       auth_plugin='mysql_native_password')
         mycursor = mydb.cursor()
         sql = "INSERT INTO kin (numberId , name, number) Value(%s, %s, %s)"
         val = (kin_id_entry.get(), kin_name_entry.get(), kin_no_entry.get())

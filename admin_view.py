@@ -14,6 +14,7 @@ root = Tk()
 root.title("Login Page")
 root.geometry("1000x1000")
 
+
 headin_label = Label(text="My connector").place(x=400, y=5)
 
 #labels
@@ -40,14 +41,18 @@ kin_id_entry = Entry().place(x=140, y=200)
 #functions
 
 def Add():
-    id = id_entry.get()
+    identity = id_entry.get()
     name = name_entry.get()
     surname = surname_entry.get()
     password = contact_entry.get()
     kinid = kin_id_entry.get.get()
     contact = contact_entry.get()
     email = email_entry.get()
-    mydb = mysql.connector.connect(host="sql4.freesqldatabase.com", user="sql4424049", password="szuTDDBDLa", database="sql4424049", auth_plugin = 'mysql_native_password')
+    mydb = mysql.connector.connect(host="sql4.freesqldatabase.com",
+                                   user="sql4424049",
+                                   password="szuTDDBDLa",
+                                   database="sql4424049",
+                                   auth_plugin='mysql_native_password')
 
     mycursor = mydb.cursor()
 
@@ -55,7 +60,7 @@ def Add():
 
     try:
         sql = "INSERT INTO register (id, name, surname, email, number,password,next of kinId) Values(%s,%s,%s,%s,%s,%s,%s)"
-        val = (id, name, surname, email, contact, password, kinid)
+        val = (identity, name, surname, email, contact, password, kinid)
         mycursor.execute(sql, val)
         mydb.commit()
         lastid = mycursor.lastrowid
@@ -113,13 +118,7 @@ def Update():
         mydb.commit()
         lastid = mycursor.lastrowid
         messagebox.showinfo('output''REC UPDATED')
-        id_entry.delete(0, END)
-        name_entry.delete(0, END)
-        surname_entry.delete(0, END)
-        contact_entry.delete(0, END)
-        email_entry.delete(0, END)
-        password_entry.delete(0, END)
-        kin_id_entry.delete(0, END)
+
 
     except EXCEPTION as e:
         print(e)
@@ -131,8 +130,8 @@ def Show():
     records = mycursor.fetchall()
     print(records)
 
-    for i,(id,name,surname,email,number,password,kinId )in enumerate(records, start=1):
-        listBox.insert("", "end", values=(id, name, surname, email, number,password,kinId ))
+    for i, (id, name, surname,email, number, password, kinId) in enumerate(records, start=1):
+        listBox.insert("", "end", values=(id, name, surname, email, number, password, kinId))
         mydb.close()
 
 
